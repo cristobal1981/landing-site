@@ -6,7 +6,7 @@ export const brand = {
 } as const
 
 export const site = {
-  name: "Tena Asesores",
+  name: "tenaasesores",
   tagline: "Asesores y Abogados",
   description:
     "Asesoramiento y consultoría empresarial en Tenerife. Servicios profesionales especializados en empresas digitales: fiscalidad, contabilidad, laboral y constitución de empresas.",
@@ -137,7 +137,7 @@ export const philosophy = {
 } as const
 
 export const about = {
-  badge: "Sobre Tena Asesores",
+  badge: "Sobre tenaasesores",
   title: ["Pequeños pero", "muy comprometidos."],
   paragraphs: [
     "No somos una gran corporación, y eso es precisamente nuestra ventaja. Cada cliente tiene acceso directo a profesionales con experiencia, no a un call center. Conocemos tu negocio, tu sector y tus preocupaciones.",
@@ -167,7 +167,7 @@ export const testimonials = {
       name: "María García",
       role: "Autónoma - Diseño Gráfico",
       content:
-        "Llevaba años con una gestoría que apenas me contestaba. Desde que cambié a Tena Asesores, tengo respuestas el mismo día y cero sorpresas en los impuestos.",
+        "Llevaba años con una gestoría que apenas me contestaba. Desde que cambié a tenaasesores, tengo respuestas el mismo día y cero sorpresas en los impuestos.",
       rating: 5,
     },
     {

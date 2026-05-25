@@ -18,7 +18,7 @@ const archivo = Archivo({
 })
 
 export const metadata: Metadata = {
-  title: 'Tena Asesores | Asesoría en Tenerife',
+  title: 'tenaasesores | Asesoría en Tenerife',
   description:
     'Asesoramiento y consultoría empresarial en Tenerife. Contabilidad, fiscalidad y laboral para autónomos, pymes y empresas digitales.',
   icons: {

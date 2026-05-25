@@ -1,3 +1,10 @@
+export const brand = {
+  wordmark: "tenaasesores",
+  wordmarkHighlight: "tena",
+  wordmarkRest: "asesores",
+  logoSrc: "/syntia-isotipo.svg",
+} as const
+
 export const site = {
   name: "Tena Asesores",
   tagline: "Asesores y Abogados",
@@ -7,11 +14,11 @@ export const site = {
   location: "Tenerife, España",
   email: "info@tenaasesores.es",
   phone: {
-    display: "+34 922 00 00 00",
-    href: "tel:+34922000000",
+    display: "+34 922 38 81 92",
+    href: "tel:+34922388192",
   },
   hours: {
-    weekdays: "9:00 - 14:00, 16:00 - 19:00",
+    weekdays: "9:00 - 15:00",
     weekend: "Cerrado",
   },
 } as const
@@ -24,73 +31,92 @@ export const navItems = [
 ] as const
 
 export const hero = {
-  badge: "Tu asesoría de confianza en Tenerife",
+  badge: "Tu asesoría de confianza",
   title: {
-    before: "Nos encargamos de tu",
-    highlight1: "gestoría",
-    middle: "para que tú te encargues de tu",
-    highlight2: "negocio",
+    before: "Gestoría moderna y cercana: números",
+    highlight1: "al día",
+    middle: ", decisiones con",
+    highlight2: "quien te entiende",
   },
   subtitle:
-    "Asesoría integral para autónomos, pymes y empresas digitales. Contabilidad, fiscalidad y laboral con un trato cercano y personalizado.",
+    "Consulta tu situación cuando quieras; nosotros supervisamos, revisamos y te acompañamos en contable, fiscal y laboral con el mismo trato de siempre. Para autónomos, pymes y empresas digitales que buscan eficiencia sin perder el contacto humano ni la claridad de saber a quién acudir.",
   ctaPrimary: "Solicitar Consulta Gratis",
   ctaSecondary: "Ver Servicios",
   trust: [
-    { title: "+150 Clientes", subtitle: "Confían en nosotros" },
-    { title: "Respuesta 24h", subtitle: "Siempre disponibles" },
-    { title: "100% Legal", subtitle: "Cumplimiento total" },
+    { title: "Acceso 24/7", subtitle: "Tus datos cuando los necesites" },
+    { title: "Partners Odoo", subtitle: "Implementación y supervisión" },
+    { title: "Automatización", subtitle: "Menos errores, más tiempo" },
   ],
+} as const
+
+export const odoo = {
+  badge: "Odoo · Partners oficiales",
+  title: ["Contabilidad descentralizada,", "control profesional de verdad"],
+  subtitle:
+    "Tú tienes visibilidad y acceso en tiempo real; nosotros nos encargamos de que todo esté bien hecho, revisado y al día con la normativa.",
+  benefits: [
+    {
+      title: "Contabilidad descentralizada",
+      description:
+        "Consulta tu situación contable cuando quieras, desde cualquier dispositivo.",
+    },
+    {
+      title: "Supervisión profesional",
+      description:
+        "Controlamos, revisamos y garantizamos el cumplimiento normativo de tu negocio.",
+    },
+    {
+      title: "Automatización de procesos",
+      description:
+        "Menos tareas manuales, menos errores y más tiempo para lo que importa.",
+    },
+  ],
+  stepsTitle: "Tres pasos para arrancar en Odoo",
+  steps: [
+    {
+      title: "Paquete fiscal a medida",
+      description:
+        "Definimos plan contable, impuestos y obligaciones desde el primer día.",
+    },
+    {
+      title: "Bancos sincronizados",
+      description:
+        "Conectamos tus cuentas para importar movimientos y evitar errores manuales.",
+    },
+    {
+      title: "Facturas automáticas",
+      description:
+        "Captura OCR o recepción por email para centralizar la documentación de proveedores.",
+    },
+  ],
+  cta: "Hablemos de tu migración a Odoo",
 } as const
 
 export const services = {
   badge: "Nuestros Servicios",
   title: ["Todo lo que necesitas", "en un solo lugar"],
   subtitle:
-    "Sin saltar de proveedor en proveedor. Un equipo que conoce tu negocio y te da respuestas, no más preguntas.",
+    "¿Quieres trabajar con Odoo pero no sabes por dónde empezar? Un solo equipo para contabilidad, fiscal, laboral y puesta en marcha.",
   items: [
     {
       title: "Área Contable",
       description:
-        "Gestión y control contable integral: registro, informes financieros y cumplimiento de obligaciones contables y fiscales.",
-      features: [
-        "Registro y organización contable",
-        "Informes financieros",
-        "Supervisión y revisión contable",
-        "Cumplimiento de obligaciones",
-      ],
+        "Contabilidad en Odoo con acceso 24/7 y supervisión profesional. Registro, informes y cumplimiento normativo sin sorpresas.",
     },
     {
       title: "Área Fiscal",
       description:
         "Estrategias fiscales personalizadas, fiscalidad de startups, IVA/IGIC y cumplimiento tributario sin sorpresas.",
-      features: [
-        "Fiscalidad startups",
-        "IVA/IGIC servicios telemáticos",
-        "Compliance full check",
-        "Planificación fiscal",
-      ],
     },
     {
       title: "Área Laboral",
       description:
         "Gestionamos nóminas, contratos y todo lo relacionado con tu equipo de manera eficiente.",
-      features: [
-        "Nóminas mensuales",
-        "Contratos de trabajo",
-        "Seguros sociales",
-        "Altas y bajas",
-      ],
     },
     {
       title: "Constitución de Empresas",
       description:
         "Te ayudamos a dar de alta tu negocio, eligiendo la forma jurídica más adecuada para ti.",
-      features: [
-        "Sociedades Limitadas",
-        "Autónomos",
-        "Comunidades de bienes",
-        "Asesoramiento inicial",
-      ],
     },
   ],
 } as const
@@ -115,7 +141,7 @@ export const about = {
   title: ["Pequeños pero", "muy comprometidos."],
   paragraphs: [
     "No somos una gran corporación, y eso es precisamente nuestra ventaja. Cada cliente tiene acceso directo a profesionales con experiencia, no a un call center. Conocemos tu negocio, tu sector y tus preocupaciones.",
-    "Llevamos años ayudando a pymes, autónomos y empresas digitales en Tenerife a gestionar su día a día fiscal, contable y laboral. Sin humo, sin promesas vacías. Solo trabajo bien hecho y una relación de confianza que se construye cliente a cliente.",
+    "Llevamos años ayudando a pymes, autónomos y empresas digitales en Tenerife a gestionar su día a día fiscal, contable y laboral. Como partners oficiales de Odoo, combinamos tecnología en tiempo real con supervisión humana: sin humo, sin promesas vacías.",
   ],
   features: [
     "Atención directa con tu asesor asignado",
@@ -172,7 +198,7 @@ export const contact = {
 
 export const footer = {
   description:
-    "Asesoramiento y consultoría empresarial en Tenerife. Contabilidad, fiscal y laboral para autónomos, pymes y empresas digitales.",
+    "Asesoramiento y consultoría empresarial en Tenerife. Partners oficiales Odoo: contabilidad en tiempo real, fiscal y laboral para autónomos, pymes y empresas digitales.",
   services: ["Área Contable", "Área Fiscal", "Área Laboral", "Constitución de Empresas"],
   company: [
     { label: "Sobre nosotros", href: "#nosotros" },

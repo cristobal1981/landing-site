@@ -1,12 +1,11 @@
 "use client"
 
-import { Calculator, FileText, Users, Briefcase, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { FadeIn, StaggerContainer, StaggerItem, FloatingElement } from "@/components/animations"
 import { SectionShell } from "@/components/layout/section-shell"
+import { getServiceIcon } from "@/lib/service-icons"
 import { services } from "@/content/site"
-
-const serviceIcons = [Calculator, FileText, Users, Briefcase]
 
 export function Services() {
   return (
@@ -46,13 +45,13 @@ export function Services() {
 
         <StaggerContainer className="grid gap-6 md:grid-cols-2" staggerDelay={0.1}>
           {services.items.map((service, index) => {
-            const Icon = serviceIcons[index]
+            const Icon = getServiceIcon(index)
             return (
               <StaggerItem key={service.title}>
-                <div className="group flex h-full flex-col rounded-2xl border border-agua/30 bg-gradient-to-br from-card to-agua/20 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-turquesa/50 hover:shadow-xl hover:shadow-primary/5 md:p-8">
+                <div className="group flex h-full flex-col rounded-2xl border border-agua/30 bg-gradient-to-br from-card to-agua/20 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 md:p-8">
                   <div className="flex gap-5 md:gap-6">
                     <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-primary/20 transition-all duration-300 group-hover:scale-105 group-hover:bg-primary/30 md:h-20 md:w-20">
-                      <Icon className="h-8 w-8 text-turquesa md:h-10 md:w-10" />
+                      <Icon className="h-8 w-8 text-primary md:h-10 md:w-10" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h3 className="mb-2 text-lg font-semibold text-on-dark md:text-xl">
@@ -64,8 +63,8 @@ export function Services() {
                     </div>
                   </div>
                   <Link
-                    href="#contacto"
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-turquesa transition-colors hover:text-on-dark group-hover:gap-3 md:mt-6"
+                    href={`/servicios#${service.slug}`}
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-on-dark group-hover:gap-3 md:mt-6"
                   >
                     Más información
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

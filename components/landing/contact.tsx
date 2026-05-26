@@ -1,13 +1,15 @@
 "use client"
 
-import Image from "next/image"
+import { useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, ArrowRight, Clock } from "lucide-react"
 import { FadeIn, StaggerContainer, StaggerItem, FloatingElement } from "@/components/animations"
+import { SectionParallaxBackground } from "@/components/landing/section-parallax-background"
 import { SectionShell } from "@/components/layout/section-shell"
 import { contact, images, site } from "@/content/site"
+import { useSectionParallax } from "@/lib/gsap/use-section-parallax"
 
 const contactInfo = [
   {
@@ -31,11 +33,20 @@ const contactInfo = [
 ]
 
 export function Contact() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const parallaxRef = useSectionParallax(sectionRef)
+
   return (
-    <section id="contacto" className="relative overflow-hidden bg-surface-light py-20 md:py-28">
-      <div className="absolute inset-0 z-0">
-        <Image src={images.contact} alt="" fill className="object-cover opacity-5" />
-      </div>
+    <section
+      ref={sectionRef}
+      id="contacto"
+      className="relative overflow-hidden bg-surface-light py-20 md:py-28"
+    >
+      <SectionParallaxBackground
+        src={images.contact}
+        parallaxRef={parallaxRef}
+        imageClassName="opacity-[0.12]"
+      />
 
       <FloatingElement
         className="absolute top-20 right-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl"

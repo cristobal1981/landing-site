@@ -26,7 +26,8 @@ export function Philosophy() {
           </h2>
           <p className="prose-width mx-auto text-lg leading-relaxed text-muted-on-light">
             {philosophy.subtitle}{" "}
-            <span className="font-bold text-accent-on-light">{philosophy.acronym}</span>:
+            <span className="font-bold text-accent-on-light">{philosophy.acronym}</span>
+            :
           </p>
         </FadeIn>
 
@@ -36,16 +37,18 @@ export function Philosophy() {
         >
           {philosophy.values.map((value, index) => (
             <StaggerItem key={value.letter}>
-              <div className="group h-full rounded-2xl border border-agua/30 bg-gradient-to-br from-surface-dark to-agua/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-turquesa/50 hover:shadow-xl hover:shadow-surface-dark/20">
+              <div className="group h-full rounded-2xl border border-agua/30 bg-gradient-to-br from-surface-dark to-agua/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-surface-dark/20">
                 <ScaleIn delay={index * 0.05}>
-                  <div className="mb-4 text-5xl font-bold text-turquesa transition-transform duration-300 group-hover:scale-110">
+                  <div className="mb-4 text-5xl font-bold text-primary transition-transform duration-300 group-hover:scale-110">
                     {value.letter}
                   </div>
                 </ScaleIn>
                 <h3 className="mb-2 text-sm font-semibold tracking-wide text-on-dark uppercase">
                   {value.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-muted-on-dark">{value.description}</p>
+                <p className="text-sm leading-relaxed text-muted-on-dark">
+                  {value.description}
+                </p>
               </div>
             </StaggerItem>
           ))}

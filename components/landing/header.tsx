@@ -2,13 +2,27 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { BrandLogo } from "@/components/layout/brand-logo"
-import { navItems } from "@/content/site"
+import { contactHref, navItems } from "@/content/site"
+import { cn } from "@/lib/utils"
+
+function isNavActive(pathname: string, href: string) {
+  if (href === "/proximamente") return pathname === "/proximamente"
+  return pathname === href || pathname.startsWith(`${href}/`)
+}
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const linkClass = (href: string) =>
+    cn(
+      "font-sans text-sm font-medium transition-colors hover:text-primary",
+      isNavActive(pathname, href) ? "text-primary" : "text-muted-on-dark"
+    )
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-agua/30 bg-background">
@@ -18,11 +32,7 @@ export function Header() {
 
           <nav className="hidden items-center gap-8 justify-self-center md:flex">
             {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="font-sans text-sm font-medium text-muted-on-dark transition-colors hover:text-turquesa"
-              >
+              <Link key={item.label} href={item.href} className={linkClass(item.href)}>
                 {item.label}
               </Link>
             ))}
@@ -30,7 +40,7 @@ export function Header() {
 
           <div className="hidden justify-self-end md:flex">
             <Button asChild className="font-semibold">
-              <Link href="#contacto">Consulta Gratis</Link>
+              <Link href={contactHref}>Consulta Gratis</Link>
             </Button>
           </div>
 
@@ -52,14 +62,14 @@ export function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="py-2 font-sans text-muted-on-dark transition-colors hover:text-turquesa"
+                  className={cn("py-2 transition-colors hover:text-primary", linkClass(item.href))}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
               <Button asChild className="mt-2 w-full font-semibold">
-                <Link href="#contacto" onClick={() => setIsMenuOpen(false)}>
+                <Link href={contactHref} onClick={() => setIsMenuOpen(false)}>
                   Consulta Gratis
                 </Link>
               </Button>

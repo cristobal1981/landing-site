@@ -6,7 +6,7 @@ Referencia de marca: `docs/syntia_manual-ivc.pdf` (Syntia 2025 — Manual de Ide
 - Framework: Next.js 16 (App Router)
 - Styling: Tailwind CSS 4
 - Components: React 19 + shadcn/ui (mínimo: button, input, textarea)
-- Animaciones: framer-motion (scroll) + CSS (floating blobs)
+- Animaciones: GSAP + ScrollTrigger (hero); framer-motion (scroll, incl. filosofía CLAVE); CSS (floating blobs en hero)
 - Contenido: `content/site.ts`
 
 ## Estructura
@@ -15,6 +15,9 @@ Referencia de marca: `docs/syntia_manual-ivc.pdf` (Syntia 2025 — Manual de Ide
 app/
 ├── layout.tsx
 ├── page.tsx
+├── proximamente/page.tsx   # WIP / no implementado → errorPages.wip
+├── not-found.tsx
+├── error.tsx
 └── globals.css
 components/
 ├── layout/section-shell.tsx
@@ -63,7 +66,7 @@ Fuente oficial del manual. En web cargar con `next/font` (Google Fonts o archivo
 - `globals.css` `@layer base`: `body` → Archivo; `h1–h6` → Host Grotesk (`font-family` explícito).
 - Utilidades: `badge-on-dark`, `badge-on-light`, `input-on-dark`, `prose-width`.
 - No usar Geist ni otras fuentes del template.
-- En fondos oscuros: texto secundario `text-muted-on-dark`; acentos pequeños `text-turquesa`, no `text-primary` en `text-xs`.
+- En fondos oscuros: texto secundario `text-muted-on-dark`; acentos e highlights `text-primary` (Verde Syntia). Turquesa solo en degradados o dinamismo secundario.
 
 ## Paleta de color
 
@@ -101,8 +104,8 @@ Tokens por superficie (no invertir `foreground` como fondo):
 | `muted-on-dark` | Subtítulos en oscuro (AA 4.5:1) |
 | `muted-on-light` / `on-light-muted` | Subtítulos en claro |
 | `accent-on-light` | Acentos en superficie clara (= Agua) |
-| `turquesa` | Acentos legibles en oscuro (badges, links, iconos) |
-| `primary` | Solo CTAs y elementos grandes |
+| `primary` | Verde Syntia: CTAs, highlights, iconos, enlaces activos |
+| `turquesa` | Degradados y acentos secundarios (uso moderado) |
 
 En Tailwind usar tokens semánticos; evitar `bg-foreground` en secciones.
 
@@ -132,9 +135,21 @@ En Tailwind usar tokens semánticos; evitar `bg-foreground` en secciones.
 - Mínimos digitales: isotipo ≥35px altura; conjunto horizontal ≥80px altura.
 - No deformar, rotar, añadir efectos ni cambiar colores oficiales.
 
+## Funcionalidad no implementada
+
+Cuando una página, enlace del footer, CTA o ruta **existe en la UI pero aún no está lista** (sin contenido real, sin API, sin integración):
+
+- **No usar** `404`, `400` ni `500` para eso (no es error del usuario ni fallo del servidor).
+- **Enlazar o redirigir** a la ruta canónica **`/proximamente`** (`content/errors.ts` → `notImplementedPath`, copy en `errorPages.wip`).
+- Reutilizar el mismo layout que el resto de pantallas de estado (`components/errors/error-screen.tsx`).
+- En la landing, si algo visible no debe navegar aún: badge “Próximamente” o enlace a `/proximamente` en lugar de `href="#"` o rutas vacías.
+- Cuando la funcionalidad esté lista: sustituir el enlace por la ruta definitiva y eliminar el apunte a `/proximamente` en ese sitio.
+
+Ejemplo: enlaces legales o redes sociales sin página → `href="/proximamente"`.
+
 ## Convenciones de producto
 - Teléfono solo en sección contacto, no en header.
-- `scroll-behavior: smooth` en `globals.css`.
+- `scroll-behavior: auto` en `html` (requerido por GSAP ScrollTrigger / parallax; no usar `smooth` global).
 - Textos centralizados en `content/site.ts`.
 - Sección contacto clara: fondo claro (Blanco Neblina) vs. secciones oscuras (Verde Noche).
 - Botón primario: fondo Verde Syntia, texto Verde Noche; hover con opacidad, no otro color.
@@ -149,7 +164,7 @@ En Tailwind usar tokens semánticos; evitar `bg-foreground` en secciones.
 ## Checklist antes de entregar UI
 - [x] Tipografías: Host Grotesk (títulos) + Archivo (cuerpo) vía `next/font` + `font-family` en base
 - [x] Tokens `surface-light` / `on-light` / `muted-on-dark` (no hacks `bg-foreground`)
-- [x] Verde Syntia en CTAs; turquesa/agua para acentos pequeños en oscuro
+- [x] Verde Syntia (`primary`) en CTAs y acentos; turquesa/agua solo en degradados y secundarios
 - [x] Contraste AA documentado en comentario de `globals.css`
 - [ ] Copy alineado con tono de voz del manual
 - [x] Degradados y decoración moderados (legibilidad primero)

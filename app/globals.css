@@ -11,6 +11,9 @@
  * on-light-muted #4a6f6a on surface-light — ~4.6:1
  * accent-on-light #01635c on surface-light — ~5.8:1
  * primary-foreground on primary (button) — ~7:1
+ * on-light on brisa #d6f2e8 — ~10:1
+ * muted-on-light on brisa — ~4.5:1
+ * brisa on secondary (agua) — ~5.5:1
  */
 
 :root {
@@ -29,6 +32,7 @@
   --card-foreground: var(--on-dark);
   --popover: #062a33;
   --popover-foreground: var(--on-dark);
+  /* Verde Syntia — acento identitario principal */
   --primary: #01dea2;
   --primary-foreground: #041d23;
   --secondary: #01635c;
@@ -43,6 +47,7 @@
   --input: #0d4a58;
   --ring: #01dea2;
   --brisa: #d6f2e8;
+  /* Verde Turquesa — degradados y dinamismo secundario */
   --turquesa: #2bc0a9;
   --agua: #01635c;
   --chart-1: #01dea2;
@@ -76,6 +81,7 @@
   --card-foreground: var(--on-dark);
   --popover: #062a33;
   --popover-foreground: var(--on-dark);
+  /* Verde Syntia — acento identitario principal */
   --primary: #01dea2;
   --primary-foreground: #041d23;
   --secondary: #01635c;
@@ -90,6 +96,7 @@
   --input: #0d4a58;
   --ring: #01dea2;
   --brisa: #d6f2e8;
+  /* Verde Turquesa — degradados y dinamismo secundario */
   --turquesa: #2bc0a9;
   --agua: #01635c;
   --chart-1: #01dea2;
@@ -161,7 +168,8 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* auto: ScrollTrigger scrub needs native scroll steps, not CSS smooth scroll */
+    scroll-behavior: auto;
   }
   * {
     @apply border-border outline-ring/50;
@@ -209,6 +217,19 @@
   }
   .prose-width {
     max-width: 65ch;
+  }
+  /* Banda CTA ancha — Verde Brisa + Agua (manual Syntia) */
+  .section-cta-brisa {
+    @apply w-full bg-brisa py-16 md:py-20;
+  }
+  .section-cta-brisa-title {
+    @apply text-2xl font-bold text-on-light sm:text-3xl;
+  }
+  .section-cta-brisa-body {
+    @apply text-lg text-muted-on-light;
+  }
+  .section-cta-brisa-btn {
+    @apply font-semibold bg-secondary text-brisa hover:bg-secondary/90;
   }
 }
 

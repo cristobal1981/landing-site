@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { BrandLogo } from "@/components/layout/brand-logo"
 import { SectionShell } from "@/components/layout/section-shell"
+import { notImplementedPath } from "@/content/errors"
 import { footer, site } from "@/content/site"
 
 export function Footer() {
@@ -19,12 +20,12 @@ export function Footer() {
             <h4 className="mb-4 font-sans text-sm font-semibold text-on-dark">Servicios</h4>
             <ul className="space-y-3">
               {footer.services.map((service) => (
-                <li key={service}>
+                <li key={service.label}>
                   <Link
-                    href="#servicios"
-                    className="text-sm text-muted-on-dark transition-colors hover:text-turquesa"
+                    href={service.href}
+                    className="text-sm text-muted-on-dark transition-colors hover:text-primary"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}
@@ -38,7 +39,7 @@ export function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-muted-on-dark transition-colors hover:text-turquesa"
+                    className="text-sm text-muted-on-dark transition-colors hover:text-primary"
                   >
                     {item.label}
                   </Link>
@@ -53,8 +54,8 @@ export function Footer() {
               {footer.legal.map((item) => (
                 <li key={item}>
                   <Link
-                    href="#"
-                    className="text-sm text-muted-on-dark transition-colors hover:text-turquesa"
+                    href={notImplementedPath}
+                    className="text-sm text-muted-on-dark transition-colors hover:text-primary"
                   >
                     {item}
                   </Link>
@@ -70,14 +71,14 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <Link
-              href="#"
-              className="text-sm text-muted-on-dark transition-colors hover:text-turquesa"
+              href={notImplementedPath}
+              className="text-sm text-muted-on-dark transition-colors hover:text-primary"
             >
               LinkedIn
             </Link>
             <Link
-              href="#"
-              className="text-sm text-muted-on-dark transition-colors hover:text-turquesa"
+              href={notImplementedPath}
+              className="text-sm text-muted-on-dark transition-colors hover:text-primary"
             >
               Instagram
             </Link>

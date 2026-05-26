@@ -62,7 +62,7 @@ export function Odoo() {
           {odoo.steps.map((step, index) => (
             <StaggerItem key={step.title}>
               <div className="flex h-full gap-4 rounded-2xl border border-on-light/10 bg-gradient-to-br from-surface-dark to-agua/80 p-6">
-                <span className="font-sans text-3xl font-bold text-turquesa">
+                <span className="font-sans text-3xl font-bold text-primary">
                   {index + 1}
                 </span>
                 <div>
@@ -78,7 +78,7 @@ export function Odoo() {
 
         <FadeIn className="text-center">
           <Button asChild size="lg" className="font-semibold">
-            <Link href="#contacto">
+            <Link href="/#contacto">
               {odoo.cta}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

@@ -39,11 +39,11 @@ export function Testimonials() {
         <StaggerContainer className="grid gap-6 md:grid-cols-3" staggerDelay={0.15}>
           {testimonials.items.map((testimonial) => (
             <StaggerItem key={testimonial.name}>
-              <div className="relative h-full rounded-2xl border border-agua/30 bg-gradient-to-br from-card to-agua/20 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-turquesa/40 hover:shadow-xl hover:shadow-primary/5">
-                <Quote className="absolute top-6 right-6 h-8 w-8 text-turquesa/20" />
+              <div className="relative h-full rounded-2xl border border-agua/30 bg-gradient-to-br from-card to-agua/20 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5">
+                <Quote className="absolute top-6 right-6 h-8 w-8 text-primary/20" />
                 <div className="mb-4 flex gap-1">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-turquesa text-turquesa" />
+                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                   ))}
                 </div>
                 <p className="mb-6 leading-relaxed text-on-dark/90">
@@ -51,7 +51,7 @@ export function Testimonials() {
                 </p>
                 <div className="flex items-center gap-3 border-t border-agua/30 pt-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
-                    <span className="font-semibold text-turquesa">
+                    <span className="font-semibold text-primary">
                       {testimonial.name.charAt(0)}
                     </span>
                   </div>

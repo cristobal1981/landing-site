@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import Image from "next/image"
 import {
   FadeIn,
   StaggerContainer,
@@ -11,18 +12,12 @@ import {
 import { CtaBrisaBand } from "@/components/landing/cta-brisa-band"
 import { SectionParallaxBackground } from "@/components/landing/section-parallax-background"
 import { SectionShell } from "@/components/layout/section-shell"
+import { TeamCardGeometries } from "@/components/pages/team-card-geometries"
+import { Button } from "@/components/ui/button"
 import { about, images, team } from "@/content/site"
 import { useSectionParallax } from "@/lib/gsap/use-section-parallax"
+import { LinkedInIcon } from "@/components/icons/linkedin-icon"
 import { cn } from "@/lib/utils"
-
-function memberInitials(name: string) {
-  return name
-    .split(/\s+/)
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase()
-}
 
 export function TeamPage() {
   const storyRef = useRef<HTMLElement>(null)
@@ -116,26 +111,56 @@ export function TeamPage() {
           </FadeIn>
 
           <StaggerContainer
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3"
             staggerDelay={0.06}
           >
             {team.members.map((member, index) => (
-              <StaggerItem key={member.name}>
+              <StaggerItem
+                key={member.name}
+                className={cn(
+                  team.members.length % 2 === 1 &&
+                    index === team.members.length - 1 &&
+                    "sm:col-span-2 sm:mx-auto sm:w-full sm:max-w-[42rem] xl:col-span-1 xl:mx-0 xl:max-w-none",
+                  team.members.length % 3 === 1 &&
+                    index === team.members.length - 1 &&
+                    "xl:col-start-2"
+                )}
+              >
                 <article
                   className={cn(
-                    "flex h-full flex-col rounded-2xl border border-agua/30 bg-gradient-to-br from-card to-agua/20 p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5",
-                    index === 6 && "sm:col-span-2 lg:col-span-1 xl:col-span-1"
+                    "group relative flex h-full flex-col overflow-hidden rounded-3xl border border-agua/35 bg-gradient-to-br from-card/95 via-card to-agua/15 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-xl hover:shadow-primary/10"
                   )}
                 >
-                  <div
-                    className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 font-sans text-xl font-bold text-primary"
-                    aria-hidden
-                  >
-                    {memberInitials(member.name)}
+                  <TeamCardGeometries index={index} />
+
+                  <div className="relative z-10 mb-5 grid grid-cols-[auto_1fr] items-center gap-4">
+                    <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full border-2 border-primary/35 bg-agua/20 shadow-[0_0_0_10px_rgba(47,164,184,0.08)]">
+                      <Image
+                        src={member.photo}
+                        alt={`Foto de ${member.name}`}
+                        fill
+                        className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                        sizes="128px"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-xl leading-tight font-semibold text-on-dark">{member.name}</h3>
+                      <p className="mt-1 text-sm font-medium text-primary">{member.role}</p>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        className="mt-3 inline-flex w-fit rounded-full border border-agua/40 bg-card/35 px-3 text-primary hover:border-primary/40 hover:bg-primary/12 hover:text-primary focus-visible:ring-primary/30"
+                        aria-label={`LinkedIn de ${member.name}`}
+                      >
+                        <LinkedInIcon />
+                        LinkedIn
+                      </Button>
+                    </div>
                   </div>
-                  <h3 className="mb-1 text-lg font-semibold text-on-dark">{member.name}</h3>
-                  <p className="mb-3 text-sm font-medium text-primary">{member.role}</p>
-                  <p className="text-sm leading-relaxed text-muted-on-dark">{member.bio}</p>
+
+                  <div className="relative z-10 mb-4 h-px w-full bg-gradient-to-r from-primary/30 via-agua/25 to-transparent" />
+                  <p className="relative z-10 text-[15px] leading-relaxed text-muted-on-dark">{member.bio}</p>
                 </article>
               </StaggerItem>
             ))}

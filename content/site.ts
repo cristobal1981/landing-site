@@ -300,36 +300,50 @@ export const team = {
     {
       name: "Cristóbal",
       role: "Socio · Dirección y fiscal",
+      photo:
+        "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Más de quince años asesorando pymes y autónomos. Especialista en planificación fiscal y cumplimiento tributario en Canarias.",
     },
     {
       name: "Ariana",
       role: "Área contable y Odoo",
+      photo:
+        "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Supervisa la contabilidad en Odoo y los cierres mensuales. Le gusta que los números cuadren y que el cliente los entienda.",
     },
     {
       name: "Irene",
       role: "Área laboral",
+      photo:
+        "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Gestiona nóminas, contratos y Seguridad Social. Resuelve dudas laborales con claridad y sin tecnicismos innecesarios.",
     },
     {
       name: "Verónica",
       role: "Área fiscal",
+      photo:
+        "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Lleva modelos, IVA/IGIC y obligaciones periódicas. Vigila plazos para que no te pillen sorpresas con Hacienda.",
     },
     {
       name: "David",
       role: "Constitución y altas",
+      photo:
+        "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Acompaña a nuevos negocios desde el primer día: forma jurídica, altas y puesta en marcha contable y fiscal.",
     },
     {
       name: "Jesús",
       role: "Contabilidad y revisión",
+      photo:
+        "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Revisa asientos, conciliaciones y documentación. Puente entre lo que haces en Odoo y la supervisión del equipo.",
     },
     {
       name: "Guillermo",
       role: "Tecnología y procesos",
+      photo:
+        "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop",
       bio: "Automatización, integraciones y buenas prácticas en Odoo. Menos tareas manuales, más tiempo para lo importante.",
     },
   ],

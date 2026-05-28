@@ -25,9 +25,18 @@ export function Contact() {
         aria-hidden
         className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_12%_14%,rgba(1,222,162,0.24),transparent_32%),radial-gradient(circle_at_86%_20%,rgba(1,99,92,0.15),transparent_30%),radial-gradient(circle_at_72%_88%,rgba(43,192,169,0.18),transparent_35%),linear-gradient(to_bottom,rgba(255,255,255,0.92),rgba(214,242,232,0.95))]"
       />
-      <div aria-hidden className="pointer-events-none absolute -top-24 right-12 h-60 w-60 rotate-12 rounded-[2rem] border border-agua/20 bg-white/55" />
-      <div aria-hidden className="pointer-events-none absolute top-1/3 -left-16 h-44 w-44 rounded-full border border-primary/35 bg-primary/10" />
-      <div aria-hidden className="pointer-events-none absolute bottom-12 right-1/3 h-24 w-24 rotate-45 border border-agua/30 bg-white/70" />
+      <div
+        aria-hidden
+        className="contact-geo-float contact-geo-float-a pointer-events-none absolute -top-24 right-12 h-60 w-60 rotate-12 rounded-[2rem] border border-agua/20 bg-white/55"
+      />
+      <div
+        aria-hidden
+        className="contact-geo-float contact-geo-float-b pointer-events-none absolute top-1/3 -left-16 h-44 w-44 rounded-full border border-primary/35 bg-primary/10"
+      />
+      <div
+        aria-hidden
+        className="contact-geo-float contact-geo-float-c pointer-events-none absolute bottom-12 right-1/3 h-24 w-24 rotate-45 border border-agua/30 bg-white/70"
+      />
 
       <SectionShell>
         <FadeIn className="mx-auto mb-14 max-w-3xl text-center">

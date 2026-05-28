@@ -190,6 +190,25 @@
 }
 
 @layer utilities {
+  .contact-geo-float {
+    animation: contact-geo-drift 17s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  .contact-geo-float-a {
+    animation-delay: -2s;
+  }
+
+  .contact-geo-float-b {
+    animation-duration: 21s;
+    animation-delay: -7s;
+  }
+
+  .contact-geo-float-c {
+    animation-duration: 15s;
+    animation-delay: -11s;
+  }
+
   .bg-hero-gradient {
     @apply bg-gradient-to-br from-background via-card to-agua;
   }
@@ -316,6 +335,22 @@
   }
 }
 
+@keyframes contact-geo-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0.01deg);
+    opacity: 0.9;
+  }
+  33% {
+    transform: translate3d(0.45rem, -0.35rem, 0) rotate(1.4deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translate3d(-0.3rem, 0.25rem, 0) rotate(-1.1deg);
+    opacity: 0.84;
+  }
+}
+
 @keyframes logo-marquee {
   from {
     transform: translateX(0);
@@ -334,6 +369,10 @@
     scroll-behavior: auto;
   }
   .animate-float {
+    animation: none;
+  }
+
+  .contact-geo-float {
     animation: none;
   }
 

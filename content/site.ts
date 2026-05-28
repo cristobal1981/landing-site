@@ -26,7 +26,7 @@ export const site = {
 export const navItems = [
   { label: "Servicios", href: "/servicios" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Planes", href: "/proximamente" },
+  { label: "Planes", href: "/planes" },
 ] as const
 
 export const contactHref = "/contacto" as const
@@ -90,6 +90,69 @@ export const odoo = {
     },
   ],
   cta: "Hablemos de tu migración a Odoo",
+} as const
+
+export const plans = {
+  badge: "Planes",
+  title: ["Elige el ritmo que necesita", "tu negocio hoy"],
+  subtitle:
+    "Tres niveles pensados para pymes y autónomos: cobertura clara, precio mensual transparente y posibilidad de escalar cuando creces.",
+  legalNote:
+    "Precios orientativos sin impuestos, solo como referencia inicial. Ajustamos propuesta final tras revisar tu volumen y necesidades reales.",
+  ctaTitle: "¿No sabes qué plan te encaja mejor?",
+  ctaSubtitle:
+    "Te orientamos en 20 minutos y te recomendamos el plan con mejor equilibrio entre coste, cobertura y etapa de negocio.",
+  ctaLabel: "Hablar con un asesor",
+  tiers: [
+    {
+      name: "Base",
+      audience: "Autónomos & microempresas con operativa estable",
+      price: "69",
+      period: "mes",
+      summary: "Cobertura esencial para tener fiscal y contabilidad al día sin fricción.",
+      responseSla: "Respuesta en 48h laborables",
+      ctaLabel: "Quiero Empezar",
+      highlight: false,
+      items: [
+        "Contabilidad mensual y cierre básico",
+        "Modelos fiscales trimestrales y resumen anual",
+        "Soporte por email",
+        "1 sesión de revisión mensual",
+      ],
+    },
+    {
+      name: "Profesional",
+      audience: "Pymes con equipo y mayor volumen operativo",
+      price: "129",
+      period: "mes",
+      summary: "Plan recomendado para control más fino, prevención de errores y mayor rapidez.",
+      responseSla: "Respuesta en menos de 24h laborables",
+      ctaLabel: "Reservar Este Plan",
+      highlight: true,
+      items: [
+        "Todo lo incluido en Base",
+        "Gestión laboral hasta 6 nóminas",
+        "Panel de seguimiento y alertas de plazos",
+        "2 sesiones de revisión al mes",
+      ],
+    },
+    {
+      name: "Avanzado",
+      audience: "Empresas en crecimiento con necesidades de control continuo",
+      price: "239",
+      period: "mes",
+      summary: "Acompañamiento integral con mayor profundidad estratégica y operativa.",
+      responseSla: "Canal prioritario y respuesta en el día",
+      ctaLabel: "Pedir Propuesta",
+      highlight: false,
+      items: [
+        "Todo lo incluido en Profesional",
+        "Gestión laboral hasta 15 nóminas",
+        "Acompañamiento en inspecciones y requerimientos",
+        "Comité mensual de seguimiento con acciones",
+      ],
+    },
+  ],
 } as const
 
 export const services = {
@@ -559,7 +622,7 @@ export const footer = {
   company: [
     { label: "Servicios", href: "/servicios" },
     { label: "Nosotros", href: "/nosotros" },
-    { label: "Planes", href: "/proximamente" },
+    { label: "Planes", href: "/planes" },
     { label: "Testimonios", href: "/#testimonios" },
     { label: "Contacto", href: "/contacto" },
   ],

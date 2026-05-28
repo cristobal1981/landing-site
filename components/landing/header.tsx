@@ -10,7 +10,6 @@ import { contactHref, navItems } from "@/content/site"
 import { cn } from "@/lib/utils"
 
 function isNavActive(pathname: string, href: string) {
-  if (href === "/proximamente") return pathname === "/proximamente"
   return pathname === href || pathname.startsWith(`${href}/`)
 }
 
@@ -58,15 +57,27 @@ export function Header() {
           </button>
         </div>
 
-        {isMenuOpen && (
-          <div className="border-t border-agua/30 py-4 md:hidden">
-            <nav className="flex flex-col gap-4">
+        <div
+          className={cn(
+            "grid overflow-hidden border-agua/30 transition-[grid-template-rows,border-top-width] duration-300 ease-out motion-reduce:transition-none md:hidden",
+            isMenuOpen ? "grid-rows-[1fr] border-t" : "grid-rows-[0fr] border-t-0"
+          )}
+          aria-hidden={!isMenuOpen}
+        >
+          <div className="min-h-0">
+            <nav
+              className={cn(
+                "flex flex-col gap-4 py-4 transition-[opacity,transform] duration-250 ease-out motion-reduce:transition-none",
+                isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+              )}
+            >
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   className={cn("py-2 transition-colors hover:text-primary", linkClass(item.href))}
                   onClick={() => setIsMenuOpen(false)}
+                  tabIndex={isMenuOpen ? 0 : -1}
                 >
                   {item.label}
                 </Link>
@@ -79,13 +90,13 @@ export function Header() {
                   marketingCtaVariantClassName.primary
                 )}
               >
-                <Link href={contactHref} onClick={() => setIsMenuOpen(false)}>
+                <Link href={contactHref} onClick={() => setIsMenuOpen(false)} tabIndex={isMenuOpen ? 0 : -1}>
                   Consulta Gratis
                 </Link>
               </Button>
             </nav>
           </div>
-        )}
+        </div>
       </div>
     </header>
   )

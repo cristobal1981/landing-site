@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { ServicesPage } from "@/components/pages/services-page"
-import { site } from "@/content/site"
+import { site } from "@/src/shared/config/site"
 
 export const metadata: Metadata = {
   title: "Servicios | tenaasesores",

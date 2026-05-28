@@ -1,4 +1,4 @@
-import { Contact } from "@/components/landing/contact"
+import { Contact } from "@/src/modules/contact/ui"
 
 export default function ContactPage() {
   return <Contact />

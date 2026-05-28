@@ -30,6 +30,9 @@ preview-*.png
 *-preview.png
 *-home.png
 
+# Sensitive internal docs
+docs/*.pdf
+
 # OS
 .DS_Store
 Thumbs.db

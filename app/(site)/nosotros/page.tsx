@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { TeamPage } from "@/components/pages/team-page"
-import { site } from "@/content/site"
+import { site } from "@/src/shared/config/site"
 
 export const metadata: Metadata = {
   title: "Nosotros | tenaasesores",

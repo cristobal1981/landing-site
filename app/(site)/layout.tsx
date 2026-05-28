@@ -1,6 +1,5 @@
 import { SiteChatWidget } from "@/components/chat/site-chat-widget"
-import { Header } from "@/components/landing/header"
-import { Footer } from "@/components/landing/footer"
+import { Header, Footer } from "@/src/modules/landing/ui"
 
 export default function SiteLayout({
   children,

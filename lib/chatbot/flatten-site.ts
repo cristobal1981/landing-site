@@ -2,6 +2,8 @@ import {
   about,
   contact,
   contactHref,
+  faqContact,
+  faqGeneral,
   hero,
   odoo,
   philosophy,
@@ -63,6 +65,32 @@ export function flattenSiteContent(): KnowledgeChunk[] {
       keywords: ["contacto", "consulta", "formulario", "gratis", "cita"],
     }),
   )
+
+  for (const [index, item] of faqGeneral.items.entries()) {
+    chunks.push(
+      chunk({
+        id: `faq-general-${index}`,
+        topic: "faq",
+        title: item.question,
+        body: item.answer,
+        href: "/",
+        keywords: ["faq", "preguntas", "dudas", "consulta", "servicios"],
+      }),
+    )
+  }
+
+  for (const [index, item] of faqContact.items.entries()) {
+    chunks.push(
+      chunk({
+        id: `faq-contact-${index}`,
+        topic: "contacto",
+        title: item.question,
+        body: item.answer,
+        href: "/contacto",
+        keywords: ["faq", "contacto", "formulario", "consulta", "respuesta"],
+      }),
+    )
+  }
 
   chunks.push(
     chunk({

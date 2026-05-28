@@ -4,62 +4,37 @@ import { useRef } from "react"
 import { Button, marketingCtaBaseClassName, marketingCtaVariantClassName } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, ArrowRight, Clock } from "lucide-react"
-import { FadeIn, StaggerContainer, StaggerItem, FloatingElement } from "@/components/animations"
-import { SectionParallaxBackground } from "@/components/landing/section-parallax-background"
+import { MapPin, Phone, Mail, ArrowRight, Clock, LinkedinIcon, InstagramIcon, Sparkles } from "lucide-react"
+import { FadeIn } from "@/components/animations"
+import { FaqSection } from "@/components/landing/faq-section"
 import { SectionShell } from "@/components/layout/section-shell"
-import { contact, images, site } from "@/content/site"
-import { useSectionParallax } from "@/lib/gsap/use-section-parallax"
+import { contact, faqContact, site } from "@/content/site"
 import { cn } from "@/lib/utils"
 
-const contactInfo = [
-  {
-    icon: Phone,
-    title: "Teléfono",
-    content: site.phone.display,
-    action: site.phone.href,
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    content: site.email,
-    action: `mailto:${site.email}`,
-  },
-  {
-    icon: MapPin,
-    title: "Oficina",
-    content: site.location,
-    action: "#",
-  },
-]
+const socialIcons = {
+  LinkedIn: LinkedinIcon,
+  Instagram: InstagramIcon,
+} as const
 
 export function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
-  const parallaxRef = useSectionParallax(sectionRef)
 
   return (
-    <section
-      ref={sectionRef}
-      id="contacto"
-      className="relative overflow-hidden bg-surface-light py-20 md:py-28"
-    >
-      <SectionParallaxBackground
-        src={images.contact}
-        parallaxRef={parallaxRef}
-        imageClassName="opacity-[0.12]"
+    <section ref={sectionRef} id="contacto" className="relative overflow-x-hidden bg-brisa py-20 md:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background-image:radial-gradient(circle_at_12%_14%,rgba(1,222,162,0.24),transparent_32%),radial-gradient(circle_at_86%_20%,rgba(1,99,92,0.15),transparent_30%),radial-gradient(circle_at_72%_88%,rgba(43,192,169,0.18),transparent_35%),linear-gradient(to_bottom,rgba(255,255,255,0.92),rgba(214,242,232,0.95))]"
       />
-
-      <FloatingElement
-        className="absolute top-20 right-20 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
-        duration={12}
-      />
+      <div aria-hidden className="pointer-events-none absolute -top-24 right-12 h-60 w-60 rotate-12 rounded-[2rem] border border-agua/20 bg-white/55" />
+      <div aria-hidden className="pointer-events-none absolute top-1/3 -left-16 h-44 w-44 rounded-full border border-primary/35 bg-primary/10" />
+      <div aria-hidden className="pointer-events-none absolute bottom-12 right-1/3 h-24 w-24 rotate-45 border border-agua/30 bg-white/70" />
 
       <SectionShell>
-        <FadeIn className="mx-auto mb-16 max-w-2xl text-center">
+        <FadeIn className="mx-auto mb-14 max-w-3xl text-center">
           <div className="badge-on-light mb-6">
             <span className="badge-label-on-light">{contact.badge}</span>
           </div>
-          <h2 className="mb-6 text-3xl leading-[1.2] font-bold text-on-light sm:text-4xl lg:text-5xl">
+          <h2 className="mb-5 text-3xl leading-[1.15] font-bold text-on-light sm:text-4xl lg:text-5xl">
             {contact.title[0]}
             <br />
             <span className="text-on-light-muted">{contact.title[1]}</span>
@@ -69,128 +44,195 @@ export function Contact() {
           </p>
         </FadeIn>
 
-        <div className="grid gap-12 lg:grid-cols-2">
-          <FadeIn direction="left">
-            <div className="rounded-2xl border border-agua/30 bg-gradient-to-br from-surface-dark to-agua/80 p-8 shadow-2xl shadow-surface-dark/20">
-              <h3 className="mb-6 text-xl font-semibold text-on-dark">{contact.formTitle}</h3>
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-on-dark/90">
-                      Nombre
-                    </label>
-                    <Input id="name" name="name" placeholder="Tu nombre" className="input-on-dark" />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-on-dark/90">
-                      Teléfono
-                    </label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      placeholder="+34 600 000 000"
-                      className="input-on-dark"
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-on-dark/90">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="tu@email.com"
-                    className="input-on-dark"
+        <div className="mx-auto max-w-6xl">
+          <FadeIn>
+            <div className="overflow-hidden rounded-3xl border border-agua/25 bg-white/90 shadow-xl shadow-agua/10 backdrop-blur-sm">
+              <div className="grid gap-0 lg:grid-cols-12">
+                <div className="relative border-b border-agua/20 bg-surface-dark p-6 sm:p-8 lg:col-span-7 lg:border-r lg:border-b-0 lg:p-9">
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -top-20 right-6 h-52 w-52 rounded-full bg-primary/20 blur-3xl"
                   />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-on-dark/90">
-                    ¿En qué podemos ayudarte?
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Cuéntanos brevemente tu situación..."
-                    rows={4}
-                    className="input-on-dark resize-none"
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute bottom-8 left-10 h-36 w-36 rounded-full bg-turquesa/18 blur-3xl"
                   />
-                </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className={cn(
-                    "w-full",
-                    marketingCtaBaseClassName,
-                    marketingCtaVariantClassName.primary
-                  )}
-                >
-                  Enviar consulta
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <p className="text-center text-xs text-muted-on-dark">{contact.privacyNote}</p>
-              </form>
-            </div>
-          </FadeIn>
-
-          <FadeIn direction="right" delay={0.2}>
-            <div className="flex h-full flex-col justify-center">
-              <div className="overflow-hidden rounded-2xl border border-on-light/10 bg-brisa shadow-xl shadow-on-light/5">
-                <div className="border-b border-on-light/10 px-6 py-5">
-                  <h3 className="text-lg font-semibold text-on-light">Datos de contacto</h3>
-                  <p className="mt-1 text-sm text-muted-on-light">
-                    Respuesta en menos de 24 horas laborables
-                  </p>
-                </div>
-
-                <StaggerContainer staggerDelay={0.08}>
-                  {contactInfo.map((info, index) => (
-                    <StaggerItem key={info.title}>
-                      <a
-                        href={info.action}
-                        className={`group flex items-center gap-4 px-6 py-5 transition-colors duration-200 hover:bg-primary/5 ${
-                          index < contactInfo.length - 1 ? "border-b border-on-light/8" : ""
-                        }`}
-                      >
-                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/15 transition-colors group-hover:bg-primary/25">
-                          <info.icon className="h-5 w-5 text-accent-on-light" />
-                        </div>
-                        <div className="min-w-0">
-                          <div className="mb-0.5 text-xs font-medium tracking-wide text-on-light-muted uppercase">
-                            {info.title}
-                          </div>
-                          <div className="truncate font-medium text-on-light transition-colors group-hover:text-accent-on-light">
-                            {info.content}
-                          </div>
-                        </div>
-                        <ArrowRight className="ml-auto h-4 w-4 shrink-0 -translate-x-1 text-accent-on-light opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
-                      </a>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-
-                <div className="border-t border-on-light/10 bg-on-light/[0.03] px-6 py-5">
-                  <div className="mb-3 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15">
-                      <Clock className="h-5 w-5 text-accent-on-light" />
+                  <div className="mb-7 flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                      <h3 className="text-2xl font-semibold tracking-tight text-on-dark">{contact.formTitle}</h3>
+                      <p className="mt-2 text-sm text-muted-on-dark">
+                        Cuéntanos tu caso. Te respondemos con propuesta clara en menos de 24h laborables.
+                      </p>
                     </div>
-                    <h4 className="font-semibold text-on-light">Horario de atención</h4>
                   </div>
-                  <div className="space-y-2 pl-[52px] text-sm">
-                    <div className="flex justify-between gap-4 text-muted-on-light">
-                      <span>Lunes - Viernes</span>
-                      <span className="text-right font-medium text-on-light">
-                        {site.hours.weekdays}
-                      </span>
+
+                  <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-sm font-medium text-on-dark/95">
+                          Nombre
+                        </label>
+                        <Input id="name" name="name" placeholder="Tu nombre" className="input-on-dark" />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="phone" className="text-sm font-medium text-on-dark/95">
+                          Teléfono
+                        </label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          placeholder="+34 600 000 000"
+                          className="input-on-dark"
+                        />
+                      </div>
                     </div>
-                    <div className="flex justify-between text-muted-on-light">
-                      <span>Sábados y Domingos</span>
-                      <span className="text-on-light-muted">{site.hours.weekend}</span>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium text-on-dark/95">
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="tu@email.com"
+                        className="input-on-dark"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-sm font-medium text-on-dark/95">
+                        ¿En qué podemos ayudarte?
+                      </label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="Cuéntanos brevemente tu situación..."
+                        rows={4}
+                        className="input-on-dark resize-none overflow-hidden"
+                        onInput={(event) => {
+                          const target = event.currentTarget
+                          target.style.height = "auto"
+                          target.style.height = `${target.scrollHeight}px`
+                        }}
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className={cn(
+                        "w-full",
+                        marketingCtaBaseClassName,
+                        marketingCtaVariantClassName.primary
+                      )}
+                    >
+                      Enviar consulta
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                    <p className="text-center text-xs text-muted-on-dark">{contact.privacyNote}</p>
+                  </form>
+
+                  <div className="mt-6 rounded-xl border border-agua/35 bg-on-dark/8 px-4 py-3 text-center text-sm text-muted-on-dark motion-safe:animate-pulse [animation-duration:4.8s]">
+                    ¿Tienes dudas antes de enviar? Mira las preguntas frecuentes justo debajo.
+                  </div>
+                </div>
+                <div className="relative bg-surface-dark p-6 sm:p-8 lg:col-span-5">
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -top-14 -left-4 h-44 w-44 rounded-full bg-primary/16 blur-3xl"
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute bottom-6 right-6 h-32 w-32 rounded-full bg-turquesa/14 blur-3xl"
+                  />
+                  <div className="mb-6">
+                    <h3 className="text-lg font-semibold text-on-dark">Canales directos</h3>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="rounded-xl border border-agua/30 bg-on-dark/8 p-4">
+                      <p className="mb-1 flex items-center gap-2 text-xs font-semibold tracking-wide text-muted-on-dark uppercase">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary/25">
+                          <Phone className="h-4 w-4 text-primary motion-safe:animate-pulse" />
+                        </span>
+                        Teléfono
+                      </p>
+                      <p className="text-sm font-semibold text-on-dark">{site.phone.display}</p>
+                    </div>
+                    <div className="rounded-xl border border-agua/30 bg-on-dark/8 p-4">
+                      <p className="mb-1 flex items-center gap-2 text-xs font-semibold tracking-wide text-muted-on-dark uppercase">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary/25">
+                          <Mail className="h-4 w-4 text-primary motion-safe:animate-pulse" />
+                        </span>
+                        Email
+                      </p>
+                      <p className="text-sm font-semibold text-on-dark">{site.email}</p>
+                    </div>
+                    <div className="rounded-xl border border-agua/30 bg-on-dark/8 p-4">
+                      <p className="mb-1 flex items-center gap-2 text-xs font-semibold tracking-wide text-muted-on-dark uppercase">
+                        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-primary/25">
+                          <MapPin className="h-4 w-4 text-primary motion-safe:animate-pulse" />
+                        </span>
+                        Oficina
+                      </p>
+                      <p className="text-sm font-semibold text-on-dark">
+                        C/ El Toscal, 29, 1º pta 7, Los Realejos (Tenerife)
+                      </p>
+                      <div className="mt-3 flex items-center gap-2 text-xs text-muted-on-dark">
+                        <Clock className="h-3.5 w-3.5 text-accent-on-light" />
+                        <span>Lunes a Viernes · {site.hours.weekdays}</span>
+                      </div>
+                      <div className="mt-1 text-xs text-muted-on-dark">
+                        Puede variar por festivos y dias especiales.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-7 rounded-2xl border border-primary/35 bg-primary/14 p-4">
+                    <p className="mb-3 inline-flex items-center gap-2 text-sm font-bold tracking-wide text-on-dark uppercase">
+                      <Sparkles className="h-4 w-4 text-primary" />
+                      Siguenos
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {contact.socials
+                        .filter((social) => social.label === "LinkedIn" || social.label === "Instagram")
+                        .map((social) => {
+                          const Icon = socialIcons[social.label as keyof typeof socialIcons]
+                          if (!Icon) return null
+
+                          return (
+                            <a
+                              key={social.label}
+                              href={social.href}
+                              target="_blank"
+                              rel="noreferrer"
+                            className="inline-flex items-center gap-2 rounded-full border border-agua/35 bg-on-dark/10 px-3 py-1.5 text-xs font-semibold text-on-dark transition-all hover:-translate-y-0.5 hover:border-primary/45 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-on-light/40"
+                              aria-label={social.label}
+                            >
+                              <Icon className="h-3.5 w-3.5" />
+                              <span>{social.label}</span>
+                            </a>
+                          )
+                        })}
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.15} className="mt-8">
+            <div className="rounded-3xl border border-agua/20 bg-white/85 p-6 shadow-lg shadow-agua/8 md:p-8">
+              <div className="mb-6 text-center">
+                <p className="text-xs font-semibold tracking-[0.18em] text-on-light-muted uppercase">
+                  Resuelve dudas comunes
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold text-on-light">Preguntas frecuentes</h3>
+              </div>
+              <FaqSection
+                embedded
+                compact
+                items={faqContact.items}
+                className="mx-auto max-w-none"
+              />
             </div>
           </FadeIn>
         </div>

@@ -214,6 +214,15 @@
   .input-on-dark {
     @apply border-agua/30 bg-on-dark/10 text-on-dark placeholder:text-muted-on-dark focus-visible:border-primary focus-visible:ring-ring/50;
   }
+  .contact-form-shell {
+    @apply rounded-2xl border border-agua/40 bg-gradient-to-br from-surface-dark via-[#083340] to-agua/90 p-6 shadow-2xl shadow-surface-dark/30 md:p-8;
+  }
+  .contact-response-pill {
+    @apply inline-flex items-center rounded-full border border-primary/40 bg-primary/18 px-3 py-1 text-xs font-semibold tracking-wide text-on-dark uppercase;
+  }
+  .contact-faq-shell {
+    @apply rounded-2xl border border-agua/25 bg-brisa/80 shadow-lg shadow-agua/10;
+  }
   .prose-width {
     max-width: 65ch;
   }
@@ -229,6 +238,34 @@
   }
   .section-cta-brisa-btn {
     @apply font-semibold bg-secondary text-brisa hover:bg-secondary/90;
+  }
+
+  .logo-marquee-mask {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .logo-marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 3rem;
+    animation: logo-marquee 30s linear infinite;
+  }
+
+  .logo-marquee-mask:hover .logo-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .logo-marquee-item {
+    display: flex;
+    min-height: 56px;
+    min-width: 160px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
   }
 
   /*
@@ -279,6 +316,15 @@
   }
 }
 
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -289,5 +335,17 @@
   }
   .animate-float {
     animation: none;
+  }
+
+  .logo-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .logo-marquee-mask {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }

@@ -427,6 +427,124 @@ export const contact = {
     "Cuéntanos tu situación y te contactaremos en menos de 24 horas. La primera consulta es gratuita.",
   formTitle: "Solicita tu consulta gratuita",
   privacyNote: "Al enviar aceptas nuestra política de privacidad",
+  socialTitle: "Síguenos en redes",
+  socials: [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com",
+    },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com",
+    },
+    {
+      label: "X",
+      href: "https://x.com",
+    },
+  ],
+} as const
+
+export const logoMarquee = {
+  badge: "Empresas con las que trabajamos",
+  title: "Confianza de equipos que priorizan orden y claridad",
+  items: [
+    {
+      name: "Notion",
+      alt: "Logo de Notion",
+      src: "/logos/notion.svg",
+      href: "https://www.notion.so",
+    },
+    {
+      name: "Shopify",
+      alt: "Logo de Shopify",
+      src: "/logos/shopify.svg",
+      href: "https://www.shopify.com",
+    },
+    {
+      name: "HubSpot",
+      alt: "Logo de HubSpot",
+      src: "/logos/hubspot.svg",
+      href: "https://www.hubspot.com",
+    },
+    {
+      name: "Stripe",
+      alt: "Logo de Stripe",
+      src: "/logos/stripe.svg",
+      href: "https://stripe.com",
+    },
+    {
+      name: "Slack",
+      alt: "Logo de Slack",
+      src: "/logos/slack.svg",
+      href: "https://slack.com",
+    },
+    {
+      name: "Canva",
+      alt: "Logo de Canva",
+      src: "/logos/canva.svg",
+      href: "https://www.canva.com",
+    },
+  ],
+} as const
+
+export const faqGeneral = {
+  badge: "Preguntas frecuentes",
+  title: ["Dudas habituales", "antes de empezar"],
+  subtitle:
+    "Respondemos lo que más nos preguntan para que sepas exactamente cómo trabajamos y qué esperar desde la primera consulta.",
+  items: [
+    {
+      question: "¿La primera consulta tiene coste?",
+      answer:
+        "No. La primera consulta es gratuita y sin compromiso. Nos sirve para entender tu situación y decirte si podemos ayudarte.",
+    },
+    {
+      question: "¿Trabajáis solo con empresas en Tenerife?",
+      answer:
+        "Nuestro equipo está en Tenerife, pero también trabajamos con autónomos y pymes de otras zonas cuando encaja el servicio.",
+    },
+    {
+      question: "¿Puedo contratar solo fiscal o solo laboral?",
+      answer:
+        "Sí. Puedes contratar servicios por separado o en formato integral, según la fase en la que esté tu negocio.",
+    },
+    {
+      question: "¿En cuánto tiempo respondéis normalmente?",
+      answer:
+        "Nuestro compromiso es responder en menos de 24 horas laborables, con seguimiento claro de cada caso.",
+    },
+    {
+      question: "¿Ayudáis con migración y uso de Odoo?",
+      answer:
+        "Sí. Como partners oficiales de Odoo, cubrimos migración, configuración y supervisión para que lo uses con seguridad.",
+    },
+  ],
+} as const
+
+export const faqContact = {
+  title: "Preguntas sobre la consulta",
+  items: [
+    {
+      question: "¿Qué debo contar en el formulario?",
+      answer:
+        "Con una descripción breve de tu situación actual y el tipo de ayuda que necesitas es suficiente para empezar.",
+    },
+    {
+      question: "¿Cuándo recibiré respuesta?",
+      answer:
+        "Normalmente en menos de 24 horas laborables. Si la consulta requiere revisión adicional, te avisamos del siguiente paso.",
+    },
+    {
+      question: "¿La consulta inicial me obliga a contratar?",
+      answer:
+        "No. La primera toma de contacto no implica compromiso. Decides con calma si seguimos trabajando juntos.",
+    },
+    {
+      question: "¿Qué canal usáis para contactar?",
+      answer:
+        "Te contactamos por teléfono o email según lo que indiques, y si hace falta agendamos una llamada de seguimiento.",
+    },
+  ],
 } as const
 
 export const footer = {

@@ -29,7 +29,7 @@ export const navItems = [
   { label: "Planes", href: "/proximamente" },
 ] as const
 
-export const contactHref = "/#contacto" as const
+export const contactHref = "/contacto" as const
 
 export const hero = {
   title: {
@@ -443,7 +443,7 @@ export const footer = {
     { label: "Nosotros", href: "/nosotros" },
     { label: "Planes", href: "/proximamente" },
     { label: "Testimonios", href: "/#testimonios" },
-    { label: "Contacto", href: "/#contacto" },
+    { label: "Contacto", href: "/contacto" },
   ],
   legal: ["Aviso legal", "Política de privacidad", "Política de cookies"],
 } as const

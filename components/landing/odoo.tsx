@@ -83,7 +83,7 @@ export function Odoo() {
             size="lg"
             className={cn(marketingCtaBaseClassName, marketingCtaVariantClassName.primary)}
           >
-            <Link href="/#contacto">
+            <Link href="/contacto">
               {odoo.cta}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

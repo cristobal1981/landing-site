@@ -89,7 +89,7 @@ export function Hero() {
                 marketingCtaVariantClassName.primary
               )}
             >
-              <Link href="/#contacto">
+              <Link href="/contacto">
                 {hero.ctaPrimary}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

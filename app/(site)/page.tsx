@@ -3,7 +3,6 @@ import { Services } from "@/components/landing/services"
 import { Odoo } from "@/components/landing/odoo"
 import { Philosophy } from "@/components/landing/philosophy"
 import { Testimonials } from "@/components/landing/testimonials"
-import { Contact } from "@/components/landing/contact"
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <Odoo />
       <Philosophy />
       <Testimonials />
-      <Contact />
     </main>
   )
 }

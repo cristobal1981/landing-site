@@ -46,6 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
+      data-scroll-behavior="smooth"
       className={`${hostGrotesk.variable} ${archivo.variable} bg-background`}
     >
       <body className={`${archivo.className} antialiased`}>

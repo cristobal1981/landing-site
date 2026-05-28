@@ -13,7 +13,6 @@ import { CtaBrisaBand } from "@/components/landing/cta-brisa-band"
 import { SectionParallaxBackground } from "@/components/landing/section-parallax-background"
 import { SectionShell } from "@/components/layout/section-shell"
 import { TeamCardGeometries } from "@/components/pages/team-card-geometries"
-import { Button } from "@/components/ui/button"
 import { about, images, team } from "@/content/site"
 import { useSectionParallax } from "@/lib/gsap/use-section-parallax"
 import { LinkedInIcon } from "@/components/icons/linkedin-icon"
@@ -146,16 +145,13 @@ export function TeamPage() {
                     <div className="min-w-0">
                       <h3 className="text-xl leading-tight font-semibold text-on-dark">{member.name}</h3>
                       <p className="mt-1 text-sm font-medium text-primary">{member.role}</p>
-                      <Button
+                      <button
                         type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="mt-3 inline-flex w-fit rounded-full border border-agua/40 bg-card/35 px-3 text-primary hover:border-primary/40 hover:bg-primary/12 hover:text-primary focus-visible:ring-primary/30"
+                        className="mt-3 inline-flex text-primary transition-colors hover:text-primary/80 focus-visible:outline-none"
                         aria-label={`LinkedIn de ${member.name}`}
                       >
-                        <LinkedInIcon />
-                        LinkedIn
-                      </Button>
+                        <LinkedInIcon className="h-[22px] w-[22px]" />
+                      </button>
                     </div>
                   </div>
 

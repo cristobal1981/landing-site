@@ -2,7 +2,11 @@
 
 import Link from "next/link"
 import { useRef } from "react"
-import { Button } from "@/components/ui/button"
+import {
+  Button,
+  marketingCtaBaseClassName,
+  marketingCtaVariantClassName,
+} from "@/components/ui/button"
 import { ArrowRight, Award, Eye, Zap } from "lucide-react"
 import { FloatingElement } from "@/components/animations"
 import { useHeroGsap } from "@/components/gsap/use-hero-gsap"
@@ -10,6 +14,7 @@ import { SectionParallaxBackground } from "@/components/landing/section-parallax
 import { SectionShell } from "@/components/layout/section-shell"
 import { hero, images } from "@/content/site"
 import { useSectionParallax } from "@/lib/gsap/use-section-parallax"
+import { cn } from "@/lib/utils"
 
 const trustIcons = [Eye, Award, Zap]
 
@@ -78,7 +83,11 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="px-8 text-base font-semibold transition-transform hover:scale-105"
+              className={cn(
+                "px-8 text-base",
+                marketingCtaBaseClassName,
+                marketingCtaVariantClassName.primary
+              )}
             >
               <Link href="/#contacto">
                 {hero.ctaPrimary}
@@ -89,7 +98,11 @@ export function Hero() {
               asChild
               size="lg"
               variant="outline"
-              className="border-on-dark/30 px-8 text-base font-semibold text-on-dark transition-transform hover:scale-105 hover:bg-on-dark/10"
+              className={cn(
+                "px-8 text-base",
+                marketingCtaBaseClassName,
+                marketingCtaVariantClassName.secondary
+              )}
             >
               <Link href="/servicios">{hero.ctaSecondary}</Link>
             </Button>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 import { Check } from "lucide-react"
 import {
   FadeIn,
@@ -29,6 +29,26 @@ export function ServicesPage() {
   const { pageIntro, valueDifferential, mainServices, cta } = services
 
   const navLinks = mainServices.map((s) => ({ label: s.title, href: `#${s.slug}` }))
+
+  const scrollToService = useCallback((hashHref: string) => {
+    const id = hashHref.replace("#", "")
+    const target = document.getElementById(id)
+    if (!target) return
+
+    window.history.replaceState(null, "", hashHref)
+    target.scrollIntoView({ behavior: "smooth", block: "start" })
+  }, [])
+
+  useEffect(() => {
+    const hash = window.location.hash
+    if (!hash) return
+
+    const raf = window.requestAnimationFrame(() => {
+      scrollToService(hash)
+    })
+
+    return () => window.cancelAnimationFrame(raf)
+  }, [scrollToService])
 
   return (
     <main className="min-h-screen bg-background">
@@ -75,6 +95,10 @@ export function ServicesPage() {
               <a
                 key={link.href}
                 href={link.href}
+                onClick={(event) => {
+                  event.preventDefault()
+                  scrollToService(link.href)
+                }}
                 className="shrink-0 rounded-full border border-agua/40 bg-card/60 px-4 py-1.5 text-sm font-medium text-muted-on-dark transition-colors hover:border-primary/50 hover:text-primary"
               >
                 {link.label}

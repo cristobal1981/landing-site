@@ -2,10 +2,11 @@
 
 import Link from "next/link"
 import { ArrowRight, Eye, ShieldCheck, Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button, marketingCtaBaseClassName, marketingCtaVariantClassName } from "@/components/ui/button"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
 import { SectionShell } from "@/components/layout/section-shell"
 import { odoo } from "@/content/site"
+import { cn } from "@/lib/utils"
 
 const benefitIcons = [Eye, ShieldCheck, Zap]
 
@@ -77,7 +78,11 @@ export function Odoo() {
         </StaggerContainer>
 
         <FadeIn className="text-center">
-          <Button asChild size="lg" className="font-semibold">
+          <Button
+            asChild
+            size="lg"
+            className={cn(marketingCtaBaseClassName, marketingCtaVariantClassName.primary)}
+          >
             <Link href="/#contacto">
               {odoo.cta}
               <ArrowRight className="ml-2 h-4 w-4" />

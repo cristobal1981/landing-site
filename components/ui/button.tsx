@@ -4,6 +4,18 @@ import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
 
+export const marketingCtaBaseClassName =
+  'font-semibold transition-[transform,background-color,border-color,color] duration-250 ease-out motion-reduce:transform-none motion-reduce:transition-none hover:-translate-y-px active:translate-y-0 active:scale-[0.995] focus-visible:ring-[3px]'
+
+export const marketingCtaVariantClassName = {
+  primary:
+    'hover:bg-primary/90',
+  secondary:
+    'border-on-dark/40 bg-on-dark/5 text-on-dark hover:border-primary/70 hover:bg-primary/14 hover:text-on-dark',
+  brisa:
+    'bg-secondary text-brisa hover:bg-secondary/88',
+} as const
+
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {

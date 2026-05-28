@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { Button } from "@/components/ui/button"
+import { Button, marketingCtaBaseClassName, marketingCtaVariantClassName } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Phone, Mail, ArrowRight, Clock } from "lucide-react"
@@ -10,6 +10,7 @@ import { SectionParallaxBackground } from "@/components/landing/section-parallax
 import { SectionShell } from "@/components/layout/section-shell"
 import { contact, images, site } from "@/content/site"
 import { useSectionParallax } from "@/lib/gsap/use-section-parallax"
+import { cn } from "@/lib/utils"
 
 const contactInfo = [
   {
@@ -119,7 +120,11 @@ export function Contact() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full font-semibold transition-transform hover:scale-[1.02]"
+                  className={cn(
+                    "w-full",
+                    marketingCtaBaseClassName,
+                    marketingCtaVariantClassName.primary
+                  )}
                 >
                   Enviar consulta
                   <ArrowRight className="ml-2 h-4 w-4" />

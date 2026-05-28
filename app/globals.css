@@ -168,8 +168,7 @@
 
 @layer base {
   html {
-    /* auto: ScrollTrigger scrub needs native scroll steps, not CSS smooth scroll */
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
   * {
     @apply border-border outline-ring/50;

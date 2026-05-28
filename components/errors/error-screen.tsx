@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button, marketingCtaBaseClassName, marketingCtaVariantClassName } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 interface ErrorScreenProps {
@@ -59,7 +59,11 @@ export function ErrorScreen({
             {description}
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg" className="px-8 font-semibold">
+            <Button
+              asChild
+              size="lg"
+              className={cn("px-8", marketingCtaBaseClassName, marketingCtaVariantClassName.primary)}
+            >
               <Link href={primaryHref}>
                 {primaryLabel}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -70,7 +74,11 @@ export function ErrorScreen({
                 type="button"
                 size="lg"
                 variant="outline"
-                className="border-on-dark/30 px-8 font-semibold text-on-dark hover:bg-on-dark/10"
+                className={cn(
+                  "px-8",
+                  marketingCtaBaseClassName,
+                  marketingCtaVariantClassName.secondary
+                )}
                 onClick={onRetry}
               >
                 Intentar de nuevo

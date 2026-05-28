@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button, marketingCtaBaseClassName, marketingCtaVariantClassName } from "@/components/ui/button"
 import { BrandLogo } from "@/components/layout/brand-logo"
 import { contactHref, navItems } from "@/content/site"
 import { cn } from "@/lib/utils"
@@ -39,7 +39,10 @@ export function Header() {
           </nav>
 
           <div className="hidden justify-self-end md:flex">
-            <Button asChild className="font-semibold">
+            <Button
+              asChild
+              className={cn(marketingCtaBaseClassName, marketingCtaVariantClassName.primary)}
+            >
               <Link href={contactHref}>Consulta Gratis</Link>
             </Button>
           </div>
@@ -68,7 +71,14 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Button asChild className="mt-2 w-full font-semibold">
+              <Button
+                asChild
+                className={cn(
+                  "mt-2 w-full",
+                  marketingCtaBaseClassName,
+                  marketingCtaVariantClassName.primary
+                )}
+              >
                 <Link href={contactHref} onClick={() => setIsMenuOpen(false)}>
                   Consulta Gratis
                 </Link>

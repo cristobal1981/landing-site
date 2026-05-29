@@ -7,6 +7,7 @@ import {
   hero,
   odoo,
   philosophy,
+  plans,
   services,
   site,
   team,
@@ -88,6 +89,30 @@ export function flattenSiteContent(): KnowledgeChunk[] {
         body: item.answer,
         href: "/contacto",
         keywords: ["faq", "contacto", "formulario", "consulta", "respuesta"],
+      }),
+    )
+  }
+
+  chunks.push(
+    chunk({
+      id: "plans-overview",
+      topic: "planes",
+      title: plans.title.join(" "),
+      body: `${plans.subtitle} ${plans.tiers.map((tier) => `${tier.name}: ${tier.price}€/${tier.period}, ${tier.summary}`).join(" ")}`,
+      href: "/planes",
+      keywords: ["planes", "plan", "suscripcion", "tarifa", "precio", "mensual", "base", "profesional", "avanzado"],
+    }),
+  )
+
+  for (const tier of plans.tiers) {
+    chunks.push(
+      chunk({
+        id: `plan-${tier.name.toLowerCase()}`,
+        topic: "planes",
+        title: `Plan ${tier.name}`,
+        body: `${tier.summary} ${tier.audience}. ${tier.items.join(". ")}.`,
+        href: "/planes",
+        keywords: ["plan", tier.name.toLowerCase(), "precio", tier.price, "suscripcion", "tarifa"],
       }),
     )
   }

@@ -261,6 +261,7 @@ export function SiteChatWidget() {
 
             <form
               onSubmit={handleSubmit}
+              autoComplete="off"
               className="flex shrink-0 items-center gap-2 border-t border-border p-2.5 sm:p-3"
             >
               <Input
@@ -269,7 +270,14 @@ export function SiteChatWidget() {
                 onChange={(event) => setInput(event.target.value)}
                 placeholder={chatbotUi.inputPlaceholder}
                 className="flex-1 border-border bg-background/50 text-on-dark placeholder:text-muted-on-dark"
+                name="sappo-chat-message"
                 autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                data-1p-ignore
+                data-lpignore="true"
+                data-form-type="other"
               />
               <Button
                 type="submit"

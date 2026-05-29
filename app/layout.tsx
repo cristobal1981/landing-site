@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Archivo, Host_Grotesk } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { ConsentAnalytics } from '@/components/legal/consent-analytics'
 import './globals.css'
 
 const hostGrotesk = Host_Grotesk({
@@ -51,7 +51,7 @@ export default function RootLayout({
     >
       <body className={`${archivo.className} antialiased`}>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <ConsentAnalytics />
       </body>
     </html>
   )

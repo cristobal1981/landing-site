@@ -1,4 +1,5 @@
 import { SiteChatWidget } from "@/components/chat/site-chat-widget"
+import { CookieBanner } from "@/components/legal/cookie-banner"
 import { Header, Footer } from "@/src/modules/landing/ui"
 
 export default function SiteLayout({
@@ -11,6 +12,7 @@ export default function SiteLayout({
       <Header />
       <div className="min-h-screen pt-20">{children}</div>
       <Footer />
+      <CookieBanner />
       <SiteChatWidget />
     </>
   )

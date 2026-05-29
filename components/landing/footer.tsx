@@ -3,6 +3,7 @@ import { BrandLogo } from "@/components/layout/brand-logo"
 import { SectionShell } from "@/components/layout/section-shell"
 import { notImplementedPath } from "@/content/errors"
 import { footer, site } from "@/content/site"
+import { webIssueFooter, webIssueReportPath } from "@/content/web-issue"
 
 export function Footer() {
   return (
@@ -52,12 +53,12 @@ export function Footer() {
             <h4 className="mb-4 font-sans text-sm font-semibold text-on-dark">Legal</h4>
             <ul className="space-y-3">
               {footer.legal.map((item) => (
-                <li key={item}>
+                <li key={item.href}>
                   <Link
-                    href={notImplementedPath}
+                    href={item.href}
                     className="text-sm text-muted-on-dark transition-colors hover:text-primary"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -65,7 +66,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-agua/30 pt-8 sm:flex-row">
+        <p className="mt-10 text-center text-xs leading-relaxed text-muted-on-dark/90 sm:text-left">
+          {webIssueFooter.prompt}{" "}
+          <Link
+            href={webIssueReportPath}
+            className="text-muted-on-dark underline-offset-4 transition-colors hover:text-primary hover:underline focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+          >
+            {webIssueFooter.linkLabel}
+          </Link>
+        </p>
+
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-agua/30 pt-8 sm:flex-row">
           <p className="text-sm text-muted-on-dark">
             © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
           </p>

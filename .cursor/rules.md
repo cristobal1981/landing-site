@@ -1,5 +1,7 @@
 # Cursor Rules for landing-site
 
+> **Reglas de agente (Cursor):** disciplina de desarrollo y convenciones de producto están en `.cursor/rules/*.mdc` (`alwaysApply` o por glob). Este archivo es la **referencia de marca y UI** (paleta, tipografía, tono).
+
 Referencia de marca: `docs/syntia_manual-ivc.pdf` (Syntia 2025 — Manual de Identidad Corporativa, v1).
 
 ## Stack

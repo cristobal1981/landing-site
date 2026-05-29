@@ -1,6 +1,7 @@
 "use client"
 
-import { useRef } from "react"
+import Link from "next/link"
+import { useCallback, useEffect, useId, useRef, useState } from "react"
 import { Button, marketingCtaBaseClassName, marketingCtaVariantClassName } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -9,6 +10,12 @@ import { FadeIn } from "@/components/animations"
 import { FaqSection } from "@/components/landing/faq-section"
 import { SectionShell } from "@/components/layout/section-shell"
 import { contact, faqContact, site } from "@/content/site"
+import { contactForm } from "@/content/contact-form"
+import {
+  canSubmitContactFromClient,
+  recordContactClientSubmission,
+} from "@/lib/contact/rate-limit"
+import { isLikelyValidPhone } from "@/lib/contact/validate-inquiry"
 import { cn } from "@/lib/utils"
 
 const socialIcons = {
@@ -18,6 +25,104 @@ const socialIcons = {
 
 export function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
+  const honeypotId = useId()
+  const formStartedAtRef = useRef(Date.now())
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+  const [company, setCompany] = useState("")
+  const [formReady, setFormReady] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setFormReady(true), contactForm.limits.minSubmitDelayMs)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  const canSubmit =
+    formReady &&
+    !isSubmitting &&
+    name.trim().length > 0 &&
+    email.trim().length > 0 &&
+    message.trim().length >= contactForm.limits.messageMin &&
+    company.length === 0
+
+  const handleSubmit = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      setErrorMessage(null)
+      setSuccessMessage(null)
+
+      if (company.length > 0) {
+        setErrorMessage(contactForm.messages.honeypot)
+        return
+      }
+
+      if (!canSubmit) {
+        setErrorMessage(contactForm.messages.validation)
+        return
+      }
+
+      if (phone.trim().length > 0 && !isLikelyValidPhone(phone)) {
+        setErrorMessage(contactForm.messages.phoneInvalid)
+        return
+      }
+
+      if (!canSubmitContactFromClient()) {
+        setErrorMessage(contactForm.messages.rateLimit)
+        return
+      }
+
+      setIsSubmitting(true)
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            phone,
+            email,
+            message,
+            company,
+            formStartedAt: formStartedAtRef.current,
+          }),
+        })
+
+        const payload = (await response.json()) as {
+          ok?: boolean
+          message?: string
+          error?: string
+        }
+
+        if (response.status === 429 || payload.error === "rate_limit") {
+          setErrorMessage(contactForm.messages.rateLimit)
+          return
+        }
+
+        if (!response.ok || !payload.ok) {
+          setErrorMessage(payload.message ?? contactForm.messages.genericError)
+          return
+        }
+
+        recordContactClientSubmission()
+        setSuccessMessage(payload.message ?? contactForm.messages.success)
+        setName("")
+        setPhone("")
+        setEmail("")
+        setMessage("")
+        formStartedAtRef.current = Date.now()
+      } catch {
+        setErrorMessage(contactForm.messages.genericError)
+      } finally {
+        setIsSubmitting(false)
+      }
+    },
+    [canSubmit, company, email, message, name, phone]
+  )
 
   return (
     <section ref={sectionRef} id="contacto" className="relative overflow-x-hidden bg-brisa py-20 md:py-28">
@@ -75,13 +180,35 @@ export function Contact() {
                     </div>
                   </div>
 
-                  <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                  <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+                    <div className="sr-only" aria-hidden>
+                      <label htmlFor={honeypotId}>{contactForm.fields.honeypotLabel}</label>
+                      <input
+                        id={honeypotId}
+                        name="company"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={company}
+                        onChange={(event) => setCompany(event.target.value)}
+                      />
+                    </div>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-medium text-on-dark/95">
-                          Nombre
+                          Nombre completo
                         </label>
-                        <Input id="name" name="name" placeholder="Tu nombre" className="input-on-dark" />
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="Tu nombre completo"
+                          className="input-on-dark"
+                          value={name}
+                          onChange={(event) => setName(event.target.value)}
+                          maxLength={contactForm.limits.nameMax}
+                          required
+                          disabled={isSubmitting}
+                        />
                       </div>
                       <div className="space-y-2">
                         <label htmlFor="phone" className="text-sm font-medium text-on-dark/95">
@@ -92,6 +219,11 @@ export function Contact() {
                           name="phone"
                           placeholder="+34 600 000 000"
                           className="input-on-dark"
+                          value={phone}
+                          onChange={(event) => setPhone(event.target.value)}
+                          maxLength={contactForm.limits.phoneMax}
+                          autoComplete="tel"
+                          disabled={isSubmitting}
                         />
                       </div>
                     </div>
@@ -105,6 +237,11 @@ export function Contact() {
                         type="email"
                         placeholder="tu@email.com"
                         className="input-on-dark"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        maxLength={contactForm.limits.emailMax}
+                        required
+                        disabled={isSubmitting}
                       />
                     </div>
                     <div className="space-y-2">
@@ -117,6 +254,12 @@ export function Contact() {
                         placeholder="Cuéntanos brevemente tu situación..."
                         rows={4}
                         className="input-on-dark resize-none overflow-hidden"
+                        value={message}
+                        onChange={(event) => setMessage(event.target.value)}
+                        minLength={contactForm.limits.messageMin}
+                        maxLength={contactForm.limits.messageMax}
+                        required
+                        disabled={isSubmitting}
                         onInput={(event) => {
                           const target = event.currentTarget
                           target.style.height = "auto"
@@ -124,19 +267,43 @@ export function Contact() {
                         }}
                       />
                     </div>
+                    {(errorMessage || successMessage) && (
+                      <p
+                        role="status"
+                        aria-live="polite"
+                        className={cn(
+                          "rounded-lg border px-3 py-2 text-sm",
+                          successMessage
+                            ? "border-primary/35 bg-primary/10 text-on-dark"
+                            : "border-red-400/40 bg-red-500/10 text-on-dark"
+                        )}
+                      >
+                        {successMessage ?? errorMessage}
+                      </p>
+                    )}
                     <Button
                       type="submit"
                       size="lg"
+                      disabled={!canSubmit}
                       className={cn(
                         "w-full",
                         marketingCtaBaseClassName,
                         marketingCtaVariantClassName.primary
                       )}
                     >
-                      Enviar consulta
+                      {isSubmitting ? contactForm.messages.sending : "Enviar consulta"}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                    <p className="text-center text-xs text-muted-on-dark">{contact.privacyNote}</p>
+                    <p className="text-center text-xs text-muted-on-dark">
+                      Al enviar aceptas la{" "}
+                      <Link
+                        href="/privacidad"
+                        className="text-primary underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                      >
+                        política de privacidad
+                      </Link>
+                      .
+                    </p>
                   </form>
 
                   <div className="mt-6 rounded-xl border border-agua/35 bg-on-dark/8 px-4 py-3 text-center text-sm text-muted-on-dark motion-safe:animate-pulse [animation-duration:4.8s]">

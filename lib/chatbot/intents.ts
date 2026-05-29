@@ -1,7 +1,15 @@
 import { intentDefinitions } from "@/content/chatbot"
-import { contact, contactHref, odoo, services, site, team } from "@/content/site"
+import { contact, contactHref, odoo, plans, services, site, team } from "@/content/site"
 import { normalizeText } from "./normalize"
 import type { ChatReply } from "./types"
+
+const EXPLICIT_CONTACT_PATTERNS = [
+  /quiero\s+(hablar|contactar|llamar)/,
+  /(hablar|llamar)\s+con\s+(un\s+)?(asesor|persona|equipo)/,
+  /(me\s+)?llamais/,
+  /(quiero|necesito)\s+presupuesto/,
+  /agendar\s+(una\s+)?(llamada|cita)/,
+]
 
 function matchesIntent(query: string, patterns: RegExp[], keywords: string[]): boolean {
   if (patterns.some((pattern) => pattern.test(query))) return true
@@ -20,6 +28,12 @@ function matchesIntent(query: string, patterns: RegExp[], keywords: string[]): b
       (token) => token.includes(normalizedKeyword) || normalizedKeyword.includes(token),
     )
   })
+}
+
+export function isExplicitContactIntent(query: string): boolean {
+  const normalized = normalizeText(query)
+  if (!normalized) return false
+  return EXPLICIT_CONTACT_PATTERNS.some((pattern) => pattern.test(normalized))
 }
 
 export function matchIntent(query: string): ChatReply | null {
@@ -61,9 +75,9 @@ export function matchIntent(query: string): ChatReply | null {
       case "contact":
         return {
           source: "intent",
-          text: `${contact.subtitle}`,
+          text: "Puedes usar formulario para consulta inicial gratuita.",
           href: contactHref,
-          linkLabel: contact.formTitle,
+          linkLabel: "Ir a contacto",
         }
       case "odoo":
         return {
@@ -75,17 +89,28 @@ export function matchIntent(query: string): ChatReply | null {
       case "team":
         return {
           source: "intent",
-          text: `${team.subtitle} El equipo incluye: ${team.members.map((m) => `${m.name} (${m.role})`).join("; ")}.`,
+          text: `${team.subtitle}`,
           href: "/nosotros",
           linkLabel: "Ver equipo",
         }
       case "services":
         return {
           source: "intent",
-          text: `Ofrecemos: ${services.items.map((s) => s.title).join(", ")}. ${services.subtitle}`,
+          text: "Cubrimos fiscal, contable, laboral y constitución de empresas.",
           href: "/servicios",
           linkLabel: "Ver todos los servicios",
         }
+      case "plans": {
+        const tierSummary = plans.tiers
+          .map((tier) => `${tier.name} (${tier.price}€/${tier.period})`)
+          .join(", ")
+        return {
+          source: "intent",
+          text: `Tenemos 3 planes mensuales: ${tierSummary}. Precios orientativos.`,
+          href: "/planes",
+          linkLabel: "Ver planes",
+        }
+      }
       default:
         break
     }

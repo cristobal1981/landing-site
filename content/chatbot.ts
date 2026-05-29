@@ -20,19 +20,20 @@ export const chatbotUi = {
   closeLabel: "Cerrar chat",
   linkLabel: "Ver más",
   fallback: {
-    text: "No he encontrado información concreta sobre eso en la web. ¿Quieres que hablemos? La primera consulta es gratuita.",
-    href: contactHref,
-    linkLabel: "Solicitar consulta gratuita",
+    text: "No tengo respuesta exacta para eso todavía. Prueba servicios, nosotros o preguntas frecuentes y te llevo directo.",
+    href: "/servicios",
+    linkLabel: "Ver servicios",
   },
 } as const
 
 export const quickReplies = [
   { label: "Servicios", query: "servicios fiscal contable laboral" },
+  { label: "Planes", query: "que planes hay" },
   { label: "Horario", query: "horario de atención" },
   { label: "Teléfono", query: "teléfono de contacto" },
   { label: "Odoo", query: "Odoo partners" },
   { label: "Equipo", query: "equipo profesionales" },
-  { label: "Contacto", query: "contacto consulta gratuita" },
+  { label: "FAQ", query: "preguntas frecuentes consulta inicial" },
 ] as const
 
 export type IntentDefinition = {
@@ -64,8 +65,8 @@ export const intentDefinitions: IntentDefinition[] = [
   },
   {
     id: "contact",
-    patterns: [/contacto/, /consulta/, /cita/, /presupuesto/, /precio/, /tarifa/],
-    keywords: ["contacto", "consulta", "gratis", "cita", "formulario"],
+    patterns: [/formulario/, /pagina\s+de\s+contacto/],
+    keywords: ["formulario", "contacto"],
   },
   {
     id: "odoo",
@@ -74,8 +75,13 @@ export const intentDefinitions: IntentDefinition[] = [
   },
   {
     id: "team",
-    patterns: [/equipo/, /quienes/, /profesional/, /asesor/, /persona/],
+    patterns: [/equipo/, /quienes/, /profesional/, /persona/],
     keywords: ["equipo", "nosotros", "profesionales", "cristobal", "ariana"],
+  },
+  {
+    id: "plans",
+    patterns: [/\bplanes\b/, /\bplan\b/, /\bsuscrip/, /\btarifas?\b/, /\bprecios?\b/],
+    keywords: ["planes", "plan", "suscripcion", "tarifa", "precio", "mensual"],
   },
   {
     id: "services",

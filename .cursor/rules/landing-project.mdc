@@ -1,0 +1,36 @@
+---
+description: Convenciones del proyecto landing-site (arquitectura, contenido, chatbot, WIP)
+alwaysApply: true
+---
+
+# Landing tenaasesores — convenciones
+
+## Arquitectura
+
+- Módulos en `src/modules/<nombre>/` con `domain`, `application`, `infrastructure`, `ui`.
+- UI de páginas: `components/landing`, `components/pages`; rutas en `app/(site)/`.
+- Lógica de integración (email, webhooks) en `infrastructure`, no en componentes.
+
+## Contenido y copy
+
+- Textos del sitio en `content/site.ts` (y archivos de contenido dedicados: `content/chatbot.ts`, etc.).
+- Tono: cercano, profesional, sin jerga de gestoría tradicional (ver manual de marca en `.cursor/rules.md`).
+
+## Chatbot (Sappo)
+
+- Respuestas **cortas** (1–2 frases), con enlace a la sección fuente.
+- No pegar párrafos largos de la web.
+- Derivar a contacto humano **solo** si el usuario lo pide explícito (hablar, llamar, presupuesto, agendar).
+
+## Funcionalidad no lista
+
+- Enlaces o rutas sin implementar → `/proximamente`, no 404/500 como “próximamente”.
+
+## Formulario de contacto
+
+- Mantener alineados: validación en cliente, `lib/contact/validate-inquiry.ts` y `app/api/contact/route.ts`.
+- Rate limit, honeypot y comprobación de origen en servidor.
+
+## Secretos
+
+- Variables de entorno para webhooks/credenciales; nunca en código fuente.

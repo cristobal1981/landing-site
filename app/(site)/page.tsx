@@ -1,6 +1,7 @@
 import {
   Hero,
   LogoMarquee,
+  HomeStats,
   Services,
   Odoo,
   Philosophy,
@@ -13,10 +14,11 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <HomeStats />
       <LogoMarquee />
       <Services />
-      <Odoo />
       <Philosophy />
+      <Odoo />
       <Testimonials />
       <FaqSection
         badge={faqGeneral.badge}

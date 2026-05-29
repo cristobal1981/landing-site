@@ -13,6 +13,8 @@ export const site = {
   url: "https://tenaasesores.es",
   location: "Tenerife, España",
   email: "info@tenaasesores.es",
+  /** Incidencias técnicas de la web (reportar-problema); no usar para contacto comercial. */
+  technicalEmail: "tecnico@tenaasesores.es",
   phone: {
     display: "+34 922 38 81 92",
     href: "tel:+34922388192",
@@ -489,7 +491,7 @@ export const contact = {
   subtitle:
     "Cuéntanos tu situación y te contactaremos en menos de 24 horas. La primera consulta es gratuita.",
   formTitle: "Solicita tu consulta gratuita",
-  privacyNote: "Al enviar aceptas nuestra política de privacidad",
+  privacyNote: "Al enviar aceptas la política de privacidad",
   socialTitle: "Síguenos en redes",
   socials: [
     {
@@ -510,42 +512,90 @@ export const contact = {
 export const logoMarquee = {
   badge: "Empresas con las que trabajamos",
   title: "Confianza de equipos que priorizan orden y claridad",
+  /** Ancho/alto del hueco de cada logo en el carrusel (px). */
+  slotWidth: 220,
+  slotHeight: 60,
   items: [
     {
-      name: "Notion",
-      alt: "Logo de Notion",
-      src: "/logos/notion.svg",
-      href: "https://www.notion.so",
+      name: "Spalopia",
+      alt: "Logo de Spalopia",
+      src: "/logos/logo-spalopia.svg",
+      url: "https://www.spalopia.com/",
+      scale: 1,
     },
     {
-      name: "Shopify",
-      alt: "Logo de Shopify",
-      src: "/logos/shopify.svg",
-      href: "https://www.shopify.com",
+      name: "Turitop",
+      alt: "Logo de Turitop",
+      src: "/logos/logo-turitop.svg",
+      url: "https://www.turitop.com/",
+      scale: 1,
     },
     {
-      name: "HubSpot",
-      alt: "Logo de HubSpot",
-      src: "/logos/hubspot.svg",
-      href: "https://www.hubspot.com",
+      name: "Bluenewable",
+      alt: "Logo de Bluenewable",
+      src: "/logos/logo-bluenewable.svg",
+      url: "https://bluenewables.com/",
+      scale: 1,
     },
     {
-      name: "Stripe",
-      alt: "Logo de Stripe",
-      src: "/logos/stripe.svg",
-      href: "https://stripe.com",
+      name: "Youwind",
+      alt: "Logo de Youwind",
+      src: "/logos/logo-youwind.svg",
+      url: "https://youwindrenewables.com/",
+      scale: 1,
     },
     {
-      name: "Slack",
-      alt: "Logo de Slack",
-      src: "/logos/slack.svg",
-      href: "https://slack.com",
+      name: "Agnos PCB",
+      alt: "Logo de Agnos PCB",
+      src: "/logos/logo-agnospcb.webp",
+      url: "https://agnospcb.com/",
+      scale: 1.4,
     },
     {
-      name: "Canva",
-      alt: "Logo de Canva",
-      src: "/logos/canva.svg",
-      href: "https://www.canva.com",
+      name: "Nubelia",
+      alt: "Logo de Nubelia",
+      src: "/logos/logo-nubelia.png",
+      url: "https://nubeliacloud.com/",
+      scale: 1,
+    },
+    {
+      name: "Mecainca",
+      alt: "Logo de Mecainca",
+      src: "/logos/logo-mecainca.webp",
+      url: "https://mecainca.com/",
+      scale: 1,
+    },
+  ],
+} as const
+
+/** Franja de cifras en la home (tras el hero, antes del carrusel de logos). No duplicar about.stats en Nosotros. */
+export const homeStats = {
+  items: [
+    {
+      end: 150,
+      prefix: "+",
+      suffix: "",
+      label: "Clientes activos",
+    },
+    {
+      end: 7,
+      prefix: "",
+      suffix: "",
+      label: "Profesionales en equipo",
+      sublabel: "Trato directo en Tenerife",
+    },
+    {
+      end: 15,
+      prefix: "",
+      suffix: "+",
+      label: "Años asesorando en Canarias",
+    },
+    {
+      end: 3,
+      prefix: "",
+      suffix: "",
+      label: "Áreas integradas",
+      sublabel: "Fiscal, contable y laboral",
     },
   ],
 } as const
@@ -626,7 +676,11 @@ export const footer = {
     { label: "Testimonios", href: "/#testimonios" },
     { label: "Contacto", href: "/contacto" },
   ],
-  legal: ["Aviso legal", "Política de privacidad", "Política de cookies"],
+  legal: [
+    { label: "Aviso legal", href: "/aviso-legal" },
+    { label: "Política de privacidad", href: "/privacidad" },
+    { label: "Política de cookies", href: "/cookies" },
+  ],
 } as const
 
 export const images = {
